@@ -7,6 +7,70 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <header class="site-header">
+  <!-- Topo laranja -->
+  <div class="top-bar">
+    <span class="top-text">PeçaAq</span>
+  </div>
+
+  <!-- Navbar principal -->
+  <div class="main-nav">
+    <div class="logo">
+      <img src="img/LogoPecaAq3.png" alt="PeçaAq" />
+    </div>
+
+    <!-- Barra de busca -->
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar produtos, marcas..." />
+      <button class="filter-btn">⚙️ Filtros</button>
+      <button class="search-btn">🔍</button>
+
+      <!-- Dropdown de filtros -->
+      <div class="filter-dropdown">
+        <select id="filtro-carro">
+          <option value="">Selecione o carro</option>
+          <option value="hyundai">Hyundai</option>
+          <option value="ford">Ford</option>
+          <option value="vw">Volkswagen</option>
+        </select>
+
+        <select id="filtro-modelo">
+          <option value="">Selecione o modelo</option>
+          <option value="hb20">HB20</option>
+          <option value="ix35">iX35</option>
+          <option value="golf">Golf</option>
+          <option value="fiesta">Fiesta</option>
+        </select>
+
+        <select id="filtro-peca">
+          <option value="">Selecione a peça</option>
+          <option value="motor">Motor</option>
+          <option value="freio">Freio</option>
+          <option value="suspensao">Suspensão</option>
+          <option value="embreagem">Embreagem</option>
+        </select>
+
+        <button class="apply-filters">Aplicar</button>
+      </div>
+    </div>
+ 
+<button id="cart-button" class="btn-carrinho-header">
+  🛒 <span id="cart-count">0</span>
+</button>
+
+    <!-- Ícones -->
+  
+  </div>
+
+  <!-- Categorias -->
+  <nav class="categories">
+    <a href="#">Carro</a>
+    <a href="#">Moto</a>
+    <a href="#">Pesados</a>
+  </nav>
+</header>
+
   <main class="checkout-container">
     <!-- Imagem do produto -->
     <div class="produto-imagem">
@@ -45,19 +109,16 @@
     
       </select>
    <button id="btn-finalizar" class="btn-comprar">COMPRAR AGORA</button>
+   <!-- Botão de Adicionar ao Carrinho -->
+<button id="add-to-cart" class="btn-carrinho">Adicionar ao Carrinho</button>
+
       <label for="cep">CEP</label>
       <input type="text" id="cep" placeholder="Digite seu CEP" />
       <button id="btn-frete" class="btn-frete">CALCULAR FRETE</button>
 
     
 
-      <div class="compartilhar">
-        <p>Compartilhar:</p>
-        <a href="#">📘</a>
-        <a href="#">🐦</a>
-        <a href="#">📌</a>
-        <a href="#">📱</a>
-      </div>
+      
     </aside>
   </main>
 
@@ -317,6 +378,15 @@
       <button id="btn-fechar-sucesso" class="btn-comprar">Fechar</button>
     </div>
   </div>
+
+<div id="carrinhoModal" class="modal">
+  <div class="modal-content">
+    <span id="fecharCarrinho" class="fechar">&times;</span>
+    <h2>🛒 Seu Carrinho</h2>
+    <ul id="listaCarrinho"></ul>
+    <p><strong>Total:</strong> R$ <span id="totalCarrinho">0.00</span></p>
+  </div>
+</div>
 
   <footer>
     &copy; 2025 Sua Empresa. Todos os direitos reservados.

@@ -325,3 +325,86 @@ fecharSucesso.addEventListener('click', () => {
 btnFecharSucesso.addEventListener('click', () => {
   modalSucesso.classList.remove('show');
 });
+
+  const filterBtn = document.querySelector(".filter-btn");
+  const filterDropdown = document.querySelector(".filter-dropdown");
+
+  filterBtn.addEventListener("click", () => {
+    filterDropdown.style.display =
+      filterDropdown.style.display === "flex" ? "none" : "flex";
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!filterBtn.contains(e.target) && !filterDropdown.contains(e.target)) {
+      filterDropdown.style.display = "none";
+    }
+  });
+
+  document.querySelector(".apply-filters").addEventListener("click", () => {
+    const carro = document.getElementById("filtro-carro").value;
+    const modelo = document.getElementById("filtro-modelo").value;
+    const peca = document.getElementById("filtro-peca").value;
+
+    alert(`Filtrando: ${carro} | ${modelo} | ${peca}`);
+    // Aqui você pode integrar com a lógica real de filtragem
+  });
+
+// ======== CARRINHO ======== //
+const btnCarrinho = document.getElementById("btnCarrinho");
+const carrinhoModal = document.getElementById("carrinhoModal");
+const fecharCarrinho = document.getElementById("fecharCarrinho");
+const listaCarrinho = document.getElementById("listaCarrinho");
+const qtdCarrinho = document.getElementById("qtdCarrinho");
+const totalCarrinho = document.getElementById("totalCarrinho");
+
+let carrinho = [];
+
+// Abre o carrinho
+btnCarrinho.addEventListener("click", () => {
+  carrinhoModal.style.display = "block";
+});
+
+// Fecha o carrinho
+fecharCarrinho.addEventListener("click", () => {
+  carrinhoModal.style.display = "none";
+});
+
+// Clicar fora fecha também
+window.addEventListener("click", (e) => {
+  if (e.target == carrinhoModal) carrinhoModal.style.display = "none";
+});
+
+// Adicionar produto
+document.querySelectorAll(".btn-adicionar").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const nome = btn.dataset.nome;
+    const preco = parseFloat(btn.dataset.preco);
+
+    carrinho.push({ nome, preco });
+    atualizarCarrinho();
+  });
+});
+
+// Atualiza carrinho
+function atualizarCarrinho() {
+  listaCarrinho.innerHTML = "";
+  let total = 0;
+
+  carrinho.forEach((item, i) => {
+    total += item.preco;
+    let li = document.createElement("li");
+    li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
+    listaCarrinho.appendChild(li);
+  });
+
+  qtdCarrinho.textContent = carrinho.length;
+  totalCarrinho.textContent = total.toFixed(2);
+}
+let carrinhoCount = 0;
+
+// ao clicar no botão "Adicionar ao Carrinho"
+document.getElementById("add-to-cart").addEventListener("click", function() {
+  carrinhoCount++;
+  document.getElementById("cart-count").innerText = carrinhoCount;
+  alert("Produto adicionado ao carrinho!");
+});
